@@ -13,29 +13,32 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <header>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+        <div id="header">
+        <h1 id="main">InstaGrim! </h1>
+        <h2 id ="main">Your world in Black and White</h2>
+        </div>
+        <div>
+            <ul id="navbar">
+                <li id = "menu"><a href="index.jsp">Home</a></li>
+                <li id = "menu"><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
-        </nav>
+        </div>
        
-        <article>
+        <div id ="content">
             <h3>Register as user</h3>
+
             <form method="POST"  action="Register">
-                <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
-                </ul>
+                <ul id="menu">
+                    <p>User Name</p>
+                    <input type="text" name="username">
+                    <p>Password</p>
+                    <input type="password" name="password">
                 <br/>
-                <input type="submit" value="Regidter"> 
+                <input type="submit" value="Register">
+                </ul>
             </form>
 
-        </article>
+        </div>
         <footer>
             <ul>
                 <li class="footer"><a href="/Instagrim">Home</a></li>

@@ -14,26 +14,28 @@
 
     </head>
     <body>
-        <header>
-        <h1>InstaGrim ! </h1>
+        <div id="header">
+        <h1>InstaGrim! </h1>
         <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-                
+        </div>
+        <div>
+            <ul id="navbar">
+                <li id = "menu"><a href="index.jsp">Home</a></li>
                 <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
-        </nav>
+        </div>
        
-        <article>
+        <article id="content">
             <h3>Login</h3>
             <form method="POST"  action="Login">
-                <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
-                </ul>
+                <ul id="menu">
+                        <p>User Name</p> 
+                        <input type="text" name="username">
+                        <p>Password</p> 
+                        <input type="password" name="password">
                 <br/>
-                <input type="submit" value="Login"> 
+                <input type="submit" value="Login">
+                </ul>
             </form>
 
         </article>

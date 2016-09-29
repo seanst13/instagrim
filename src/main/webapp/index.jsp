@@ -10,20 +10,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Instagrim</title>
+        <title>InstaGrim</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <header>
-            <h1>InstaGrim ! </h1>
-            <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-
-               
-                <li><a href="upload.jsp">Upload</a></li>
+        
+        <div id ="header">
+            <h1 id="main">InstaGrim ! </h1>
+            <h2 id="main" >Your world in Black and White</h2>
+        </div>
+        <div >
+            <ul id="navbar"> 
+                <li> <a class ="active" href ="index.jsp">Home</a> 
+                <li id = "menu"><a href="upload.jsp">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -32,22 +32,23 @@
                             if (lg.getlogedin()) {
                     %>
 
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li id = "menu"><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li id="menu" style ="float: right"><a href="/profile">Log Out</a></li>
                     <%}
                             }else{
                                 %>
-                 <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
+                 <li id = "menu"><a href="register.jsp">Register</a></li>
+                <li id = "menu"><a href="login.jsp">Login</a></li>
                 <%
                                         
                             
                     }%>
             </ul>
-        </nav>
-        <footer>
+        </div>
+            <div id ="content">This is some test text</div>
+        <footer style ="bottom: 0">
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Andy C</li>
+                <li class ="footer">&COPY; Andy C & Sean Stewart</li>
             </ul>
         </footer>
     </body>

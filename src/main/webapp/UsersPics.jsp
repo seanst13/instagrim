@@ -11,24 +11,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagrim</title>
+        <title>InstaGrim</title>
         <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
     </head>
     <body>
-        <header>
-        
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
-        </header>
-        
-        <nav>
-            <ul>
-                <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+      <div id ="header">
+            <h1 id="main">InstaGrim ! </h1>
+            <h2 id="main" >Your world in Black and White</h2>
+        </div>
+        <div >
+            <ul id="navbar"> 
+                <li> <a class ="active" href ="/Instagrim">Home</a> 
+                <li id = "menu"><a href="upload.jsp">Upload</a></li>
+                    <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                    %>
+
+                <li id = "menu"><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li id="menu" style ="float: right"><a href="/profile">Log Out</a></li>
+                    <%}
+                            }else{
+                                %>
+                 <li id = "menu"><a href="register.jsp">Register</a></li>
+                <li id = "menu"><a href="login.jsp">Login</a></li>
+                <%
+                                        
+                            
+                    }%>
             </ul>
-        </nav>
- 
-        <article>
+        <article id="content">
             <h1>Your Pics</h1>
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
