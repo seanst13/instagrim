@@ -9,8 +9,103 @@ and open the template in the editor.
 */
 
 
-nav {
-    text-align: left;
-    border: 2px;
-    float: right;
+
+/* This is for the header "bar" at the top of each page. */
+#header{
+    background-color: #b3b3b3;
+    padding: 2px;
+    text-align: center;
+    font-family: calibri;
+    
+}
+/* This is for the navigation bar for traversing to each page */
+#navbar {
+    font-family: calibri;
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    width: 100%;
+}
+
+/* This is for the list elements */
+li {
+    float: left;
+    padding: 5px 0;
+    list-style: none;
+}
+
+/* This affects all list elements that are links */
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+body {
+    background-color: #f8f8f8;
+    margin:0;
+}
+
+#menu{
+    list-style:none;
+   
+}
+
+#content{
+    margin: 2em;
+    padding-left: 5em;
+    padding-right: 5em;
+    margin-top:80px;
+    padding-top:2em;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    font-family: Calibri;
+    
+}
+
+#textbox1{
+    margin-left: 1em;
+    padding-right: 5em;
+    width:100%
+}
+
+/* This affects the text and password input boxes */
+input[type=text], [type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display:block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/*This affects the submission buttons  */
+input[type=submit] {
+    width:80%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: calibri;
+    font-size: 20px;
+    height: auto; 
 }
