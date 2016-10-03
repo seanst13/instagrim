@@ -22,6 +22,7 @@
                 <li><a href="/Instagrim/index.jsp">Home</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                 <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                 <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
             </ul>
         </div>
  
