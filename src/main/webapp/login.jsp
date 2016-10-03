@@ -25,7 +25,8 @@
             </ul>
         </div>
        
-        <article id="content">
+        <article id="content" class ="contentproperties">
+            <div class = "contentbox">
             <h3>Login</h3>
             <form method="POST"  action="Login">
                 <ul id="menu">
@@ -37,7 +38,7 @@
                 <input type="submit" value="Login">
                 </ul>
             </form>
-
+            </div>
         </article>
         <footer>
             <ul>

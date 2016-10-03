@@ -23,7 +23,7 @@
         <div >
             <ul id="navbar"> 
                 <li> <a class ="active" href ="index.jsp">Home</a> 
-                <li id = "menu"><a href="upload.jsp">Upload</a></li>
+                <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -32,8 +32,8 @@
                             if (lg.getlogedin()) {
                     %>
 
-                <li id = "menu"><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                <li id="menu" style ="float: right"><a href="/profile">Log Out</a></li>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li style ="float: right"><a href="/profile">Log Out</a></li>
                     <%}
                             }else{
                                 %>
@@ -45,8 +45,15 @@
                     }%>
             </ul>
         </div>
-            <div id ="content">This is some test text</div>
-        <footer style ="bottom: 0">
+            <div id ="content" class = "contentproperties">
+                <div class ="contentbox">
+                    <h3>Welcome to InstaGrim!</h3>
+                    
+                    <p>This is some test text</p>
+                </div>
+                
+                </div>
+        <footer>
             <ul>
                 <li class ="footer">&COPY; Andy C & Sean Stewart</li>
             </ul>

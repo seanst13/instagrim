@@ -24,11 +24,18 @@
             </ul>
         </div>
        
-        <div id ="content">
+        <div id ="content" class ="contentproperties">
+            <div class ="contentbox">
             <h3>Register as user</h3>
-
+            
             <form method="POST"  action="Register">
                 <ul id="menu">
+                    <h4>Personal Details</h4>
+                    <p>Forename</p>
+                    <input type ="text" name="forename">
+                    <p>Surname</p>
+                    <input type ="text" name="surname">
+                    <h4>Account Details</h4>
                     <p>User Name</p>
                     <input type="text" name="username">
                     <p>Password</p>
@@ -37,11 +44,12 @@
                 <input type="submit" value="Register">
                 </ul>
             </form>
+            </div>
 
         </div>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li class ="footer">&COPY; Andy C & Sean Stewart</li>
             </ul>
         </footer>
     </body>

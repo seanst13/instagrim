@@ -21,8 +21,9 @@
         </div>
         <div >
             <ul id="navbar"> 
-                <li> <a class ="active" href ="/Instagrim">Home</a> 
-                <li id = "menu"><a href="upload.jsp">Upload</a></li>
+                <li> <a href ="/Instagrim">Home</a> 
+                <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -31,8 +32,8 @@
                             if (lg.getlogedin()) {
                     %>
 
-                <li id = "menu"><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                <li id="menu" style ="float: right"><a href="/profile">Log Out</a></li>
+                <li><a class ="active" href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li style ="float: right"><a href="/profile.jsp">Log Out</a></li>
                     <%}
                             }else{
                                 %>
@@ -43,8 +44,10 @@
                             
                     }%>
             </ul>
-        <article id="content">
-            <h1>Your Pics</h1>
+        </div>    
+        <article id="content" class ="contentproperties">
+            <div class ="contentbox">
+            <h3>Your Pics</h3>
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {
@@ -58,11 +61,12 @@
                 Pic p = (Pic) iterator.next();
 
         %>
-        <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
+        <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
 
             }
             }
         %>
+            </div>
         </article>
         <footer>
             <ul>

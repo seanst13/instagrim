@@ -15,7 +15,6 @@ and open the template in the editor.
     background-color: #b3b3b3;
     padding: 2px;
     text-align: center;
-    font-family: calibri;
     
 }
 /* This is for the navigation bar for traversing to each page */
@@ -50,21 +49,14 @@ li a:hover:not(.active) {
 body {
     background-color: #f8f8f8;
     margin:0;
+    font-family: Segoe UI;
 }
 
 #content{
-    margin: 30px 2em;
-    padding: 2em 5em;
+    margin:auto;
     border-radius: 5px;
     background-color: #f2f2f2;
-    font-family: Calibri;
-    
-}
 
-#textbox1{
-    margin-left: 1em;
-    padding-right: 5em;
-    width:100%
 }
 
 /* This affects the text and password input boxes */
@@ -74,11 +66,12 @@ input[type=text], [type=password]{
     margin: 8px 0;
     display:block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+ 
     box-sizing: border-box;
+    font-size:14px;
 }
 
-/*This affects the submission buttons  */
+/* This affects the submission buttons  */
 input[type=submit] {
     width:100%;
     background-color: #4CAF50;
@@ -91,4 +84,29 @@ input[type=submit] {
     font-family: calibri;
     font-size: 20px;
     height: auto; 
+}
+
+.contentproperties{
+    width:60%;
+    margin:3em;
+    padding: 2em 5em;
+ 
+}
+
+h3{
+    background-color: #b3b3b3;
+    margin: 0;
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+    padding: 1em;  
+    width:100%;
+}
+
+.contentbox{
+    background-color:#D1D5D9;
+    margin: 0;
+    border-radius:10px;
+    padding-right: 2.3em;
+    padding-bottom: 2em;
+    width:100%;
 }
