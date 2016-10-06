@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
-import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
 /**
  *
@@ -56,14 +56,27 @@ public class Login extends HttpServlet {
         boolean isValid=us.IsValidUser(username, password);
         HttpSession session=request.getSession();
         System.out.println("Session in servlet "+session);
+        
         if (isValid){
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
-            
+            request.setAttribute("LoggedIn", lg);            
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
+            
+            
+            ProfileInfo profileInfo = new ProfileInfo();
+            profileInfo.setFirst_name(us.getUserInformation(username)[0]);
+            profileInfo.setLast_name(us.getUserInformation(username)[1]);
+            profileInfo.setEmail(us.getUserInformation(username)[2]);
+            
+            
+            session.setAttribute("ProfileInfo", profileInfo);
+            
+            
+            
+            
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 	    rd.forward(request,response);
             

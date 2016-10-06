@@ -14,13 +14,13 @@
     </head>
     <body>
         <div id="header">
-        <h1 id="main">InstaGrim! </h1>
-        <h2 id ="main">Your world in Black and White</h2>
+        <h1>InstaGrim! </h1>
+        <h2>Your world in Black and White</h2>
         </div>
         <div>
             <ul id="navbar">
-                <li id = "menu"><a href="index.jsp">Home</a></li>
-                <li id = "menu"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
         </div>
        
@@ -29,12 +29,14 @@
             <h3>Register as user</h3>
             
             <form method="POST"  action="Register">
-                <ul id="menu">
+                <ul>
                     <h4>Personal Details</h4>
                     <p>Forename</p>
                     <input type ="text" name="forename">
                     <p>Surname</p>
                     <input type ="text" name="surname">
+                    <p>Email Address</p>
+                    <input type ="text" name="email">
                     <h4>Account Details</h4>
                     <p>User Name</p>
                     <input type="text" name="username">

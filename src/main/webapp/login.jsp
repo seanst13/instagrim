@@ -20,7 +20,7 @@
         </div>
         <div>
             <ul id="navbar">
-                <li id = "menu"><a href="index.jsp">Home</a></li>
+                <li><a href="index.jsp">Home</a></li>
                 <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
         </div>
@@ -29,7 +29,7 @@
             <div class = "contentbox">
             <h3>Login</h3>
             <form method="POST"  action="Login">
-                <ul id="menu">
+                <ul>
                         <p>User Name</p> 
                         <input type="text" name="username">
                         <p>Password</p> 

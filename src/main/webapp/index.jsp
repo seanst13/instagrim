@@ -27,6 +27,7 @@
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        ProfileInfo pi = (ProfileInfo) session.getAttribute("ProfileInfo");
                         if (lg != null) {
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
@@ -48,8 +49,22 @@
             <div id ="content" class = "contentproperties">
                 <div class ="contentbox">
                     <h3>Welcome to InstaGrim!</h3>
+                    <ul>
+                        <% 
+                        if (lg!=null){%>
+                            Welcome to Instagrim ,<%=pi.getFirst_name()%> <%=pi.getLast_name()%>
+                            <br>
+                        <%}
+                        %>
+                        
+                        
+                        <p>This is some test text</p>
                     
-                    <p>This is some test text</p>
+                    
+                    
+                    
+                    
+                    </ul>
                 </div>
                 
                 </div>

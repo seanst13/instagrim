@@ -27,7 +27,7 @@ public class User {
         
     }
     
-    public boolean RegisterUser(String username, String Password){
+    public boolean RegisterUser(String username, String Password, String first_name, String last_name, String email){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
         try {
@@ -37,12 +37,12 @@ public class User {
             return false;
         }
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("insert into userprofiles (login,password) Values(?,?)");
+        PreparedStatement ps = session.prepare("insert into userprofiles (login,password,first_name,last_name,email) Values(?,?,?,?,?)");
        
         BoundStatement boundStatement = new BoundStatement(ps);
         session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
-                        username,EncodedPassword));
+                        username,EncodedPassword, first_name, last_name,email));
         //We are assuming this always works.  Also a transaction would be good here !
         
         return true;
@@ -83,5 +83,30 @@ public class User {
         this.cluster = cluster;
     }
 
-    
+    public String[] getUserInformation(String username){
+        
+        String[] userInfo = new String[3];
+        
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("SELECT first_name, last_name, email FROM userprofiles WHERE login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        
+        if (rs.isExhausted()){
+            System.out.println("No user information retieved from the database");
+            
+        } else {
+            for(Row row: rs){
+            userInfo[0] = row.getString(0);
+            userInfo[1] = row.getString(1);
+            userInfo[2] = row.getString(2);
+            System.out.println(userInfo[0] + userInfo[1] + userInfo[2]);
+            }
+        }
+                  
+        return userInfo;
+    }
 }

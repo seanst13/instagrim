@@ -48,6 +48,7 @@
         <article id="content" class ="contentproperties">
             <div class ="contentbox">
             <h3>Your Pics</h3>
+            <ul>   
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {
@@ -66,6 +67,7 @@
             }
             }
         %>
+            </ul>
             </div>
         </article>
         <footer>

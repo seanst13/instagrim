@@ -26,15 +26,17 @@
             </ul>
         </div>
  
-        <article class="contentproperties">
+        <article id="content" class="contentproperties">
             <div class="contentbox">
             <h3>File Upload</h3>
+            <ul>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
 
                 <br/>
-                <input type="submit" value="Press"> to upload the file!
+                <input type="submit" value="Click to Upload File">
             </form>
+            </ul>
             </div>
         </article>
         <footer>
