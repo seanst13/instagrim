@@ -1,9 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : Sep 28, 2014, 7:01:44 PM
-    Author     : Administrator
+    Document   : profile
+    Created on : 29-Sep-2016, 15:50:22
+    Author     : seans
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
@@ -22,7 +21,7 @@
         </div>
         <div >
             <ul id="navbar"> 
-                <li> <a class ="active" href ="index.jsp">Home</a> 
+                <li> <a href ="index.jsp">Home</a> 
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
@@ -32,7 +31,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-                <li><a href="profile.jsp">Profile</a></li>
+                <li><a href="profile.jsp" class="active">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
                     <%}
@@ -48,12 +47,15 @@
         </div>
             <div id ="content" class = "contentproperties">
                 <div class ="contentbox">
-                    <h3>Welcome to InstaGrim!</h3>
+                    <h3>Your Profile</h3>
                     <ul>
                         <% 
                         if (lg!=null){%>
-                            Welcome to Instagrim, <%=pi.getFirst_name()%> <%=pi.getLast_name()%>
+                        <p><b>Username:</b> <%=lg.getUsername()%></p>
+                        <p><b>Name:</b> <%=pi.getFirst_name()%> <%=pi.getLast_name()%></p>
+                        <p><b>Email Address:</b> <%=pi.getEmail()%></p>
                             <br>
+                            <a href="update.jsp">Update Details</a>
                         <%}
                         %>
                         

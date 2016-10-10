@@ -30,6 +30,15 @@ public class ProfileInfo {
         this.email = email;
     }
     
+    public void update(String first_name, String last_name, String email){
+        setFirst_name(first_name);
+        setLast_name(last_name);
+        setEmail(email);
+        
+    }
+    
+    
+    
     public String getFirst_name()
     {
         return first_name;
