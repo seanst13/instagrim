@@ -113,14 +113,12 @@ public class User {
     public void updateUser(String username, String first_name, String last_name, String email){
         
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("UPDATE userprofiles SET first_name = '" + first_name + 
-                                                "', last_name ='" + last_name + 
-                                                "', email ='" + email + "' WHERE login =?");
+        PreparedStatement ps = session.prepare("UPDATE userprofiles SET first_name =?, last_name = ?, email = ? WHERE login =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
-                        username));
+                        first_name, last_name, email, username));
         
         if (rs.isExhausted()){
             System.out.println("No user information retieved from the database");

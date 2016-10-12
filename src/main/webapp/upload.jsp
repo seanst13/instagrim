@@ -20,8 +20,8 @@
         <div>
             <ul id="navbar">
                 <li><a href="/Instagrim/index.jsp">Home</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li><a href="upload.jsp" class="active" >Upload</a></li>
+                <li><a href="profile.jsp">Profile</a></li>
                  <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
             </ul>
         </div>
@@ -41,7 +41,7 @@
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li class ="footer">&COPY; Andy C & Sean Stewart</li>
             </ul>
         </footer>
     </body>

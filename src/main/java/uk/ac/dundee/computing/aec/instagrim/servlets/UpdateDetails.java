@@ -95,20 +95,17 @@ public class UpdateDetails extends HttpServlet {
         String first_name = request.getParameter("forename");
         String last_name = request.getParameter("surname");
         String email = request.getParameter("email");
-                
-        
-        
-        
+                 
         us.updateUser(username, first_name, last_name, email);
         
         ProfileInfo pi = new ProfileInfo();
-        pi.update(first_name, last_name, email);
+        pi.update(first_name, last_name, email); //This method just does all the set methods
         
         request.setAttribute("ProfileInfo", pi);
         session.setAttribute("ProfileInfo", pi);
         
         
-	response.sendRedirect("profile.jsp");
+	RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
     }
 
     /**

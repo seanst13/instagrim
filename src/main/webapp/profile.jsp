@@ -47,7 +47,7 @@
         </div>
             <div id ="content" class = "contentproperties">
                 <div class ="contentbox">
-                    <h3>Your Profile</h3>
+                    <h3>Your Profile <a href="update.jsp" style = "float: right">Update Details</a></h3> 
                     <ul>
                         <% 
                         if (lg!=null){%>
@@ -60,12 +60,7 @@
                         %>
                         
                         
-                        <p>This is some test text</p>
-                    
-                    
-                    
-                    
-                    
+                        <p>This is some test text</p>                    
                     </ul>
                 </div>
                 
