@@ -21,8 +21,8 @@
         </div>
         <div >
             <ul id="navbar"> 
-                <li> <a href ="index.jsp">Home</a> 
-                <li><a href="upload.jsp">Upload</a></li>
+                <li> <a class ="active" href ="/Instagrim">Home</a> 
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -31,14 +31,14 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-                <li><a href="profile.jsp" class="active">Profile</a></li>
+                <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>" class="active" >Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
                     <%}
                             }else{
                                 %>
-                 <li id = "menu"><a href="register.jsp">Register</a></li>
-                <li id = "menu"><a href="login.jsp">Login</a></li>
+                 <li id = "menu"><a href="/Instagrim/Register">Register</a></li>
+                <li id = "menu"><a href="/Instagrim/Login" method ="GET">Login</a></li>
                 <%
                                         
                             

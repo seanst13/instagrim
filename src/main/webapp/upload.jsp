@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,10 +20,28 @@
     </div>
         <div>
             <ul id="navbar">
-                <li><a href="/Instagrim/index.jsp">Home</a></li>
-                <li><a href="upload.jsp" class="active" >Upload</a></li>
-                <li><a href="profile.jsp">Profile</a></li>
-                 <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
+                <li> <a href ="/Instagrim">Home</a> 
+                <li><a href="/Instagrim/Upload" class ="active">Upload</a></li>
+                    <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        ProfileInfo pi = (ProfileInfo) session.getAttribute("ProfileInfo");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                    %>
+                <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>">Profile</a></li>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
+                    <%}
+                            }else{
+                                %>
+                 <li id = "menu"><a href="/Instagrim/Register">Register</a></li>
+                <li id = "menu"><a href="/Instagrim/Login">Login</a></li>
+                <%
+                                        
+                            
+                    }%>
             </ul>
         </div>
  
