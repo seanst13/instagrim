@@ -50,7 +50,15 @@ public class Register extends HttpServlet {
         String first_name = request.getParameter("forename");
         String last_name = request.getParameter("surname");
         String email = request.getParameter("email");
-                
+        
+        
+        username.toLowerCase();
+        
+        if (username.length() <=16){
+            
+            
+            
+            }
         
         User us=new User();
         us.setCluster(cluster);

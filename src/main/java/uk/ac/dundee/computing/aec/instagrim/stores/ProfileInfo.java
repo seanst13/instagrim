@@ -10,9 +10,9 @@ package uk.ac.dundee.computing.aec.instagrim.stores;
  * @author seans
  */
 public class ProfileInfo {
-    String first_name;
-    String last_name;
-    String email;
+    private String first_name;
+    private String last_name;
+    private String email;
     
     public void ProfileInfo(){
         

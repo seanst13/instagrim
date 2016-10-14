@@ -95,6 +95,8 @@ public class UpdateDetails extends HttpServlet {
         String first_name = request.getParameter("forename");
         String last_name = request.getParameter("surname");
         String email = request.getParameter("email");
+        
+        username.toLowerCase();
                  
         us.updateUser(username, first_name, last_name, email);
         
