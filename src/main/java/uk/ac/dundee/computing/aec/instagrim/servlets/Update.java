@@ -24,8 +24,8 @@ import uk.ac.dundee.computing.aec.instagrim.stores.*;
  *
  * @author seans
  */
-@WebServlet(name = "UpdateDetails", urlPatterns = {"/UpdateDetails"})
-public class UpdateDetails extends HttpServlet {
+@WebServlet(name = "Update", urlPatterns = {"/Update"})
+public class Update extends HttpServlet {
         Cluster cluster=null;
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
@@ -70,7 +70,8 @@ public class UpdateDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        RequestDispatcher rd=request.getRequestDispatcher("update.jsp");
+	rd.forward(request,response);
     }
 
     /**

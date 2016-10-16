@@ -13,6 +13,7 @@ public class ProfileInfo {
     private String first_name;
     private String last_name;
     private String email;
+    private java.util.UUID profilepic;
     
     public void ProfileInfo(){
         
@@ -37,8 +38,7 @@ public class ProfileInfo {
         
     }
     
-    
-    
+
     public String getFirst_name()
     {
         return first_name;
@@ -53,5 +53,16 @@ public class ProfileInfo {
     {
         return email;
     }
+    
+    public void setProfilePic(java.util.UUID uuid){
+    
+        this.profilepic = uuid;
+    }
+    
+    public java.util.UUID getProfilePic(){
+    
+    return profilepic;
+    }
+    
     
 }

@@ -50,7 +50,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user) {
+    public void insertPic(byte[] b, String type, String name, String user, String check) {
         try {
             Convertors convertor = new Convertors();
 
@@ -72,15 +72,43 @@ public class PicModel {
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
 
-            PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
-            PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
-            BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
-            BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
+            
+            if(check=="false"){
+                
+                PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
+                BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
+                BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
 
-            Date DateAdded = new Date();
-            session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
-            session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
-            session.close();
+                Date DateAdded = new Date();
+                session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
+                session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
+                session.close();
+            
+            }else if(check == "true"){
+                
+                User us = new User();
+                
+                us.updateProfilePic(user, picid);
+                
+                 PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
+                 PreparedStatement ps = session.prepare("UPDATE userprofiles SET picid WHERE login =?");
+                 BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
+                 BoundStatement updateProfilePic = new BoundStatement(ps);
+
+                 
+                 Date DateAdded = new Date();
+                 session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
+                 session.execute(updateProfilePic.bind(picid, user));
+                 session.close();
+            
+            
+            }
+            
+            
+            
+
+
 
         } catch (IOException ex) {
             System.out.println("Error --> " + ex);

@@ -47,7 +47,7 @@
         </div>
             <div id ="content" class = "contentproperties">
                 <div class ="contentbox">
-                    <h3>Your Profile <a href="update.jsp" style = "float: right">Update Details</a></h3> 
+                    <h3>Your Profile <a href="/Update" style = "float: right">Update Details</a></h3> 
                     <ul>
                         <% 
                         if (lg!=null){%>
@@ -55,7 +55,7 @@
                         <p><b>Name:</b> <%=pi.getFirst_name()%> <%=pi.getLast_name()%></p>
                         <p><b>Email Address:</b> <%=pi.getEmail()%></p>
                             <br>
-                            <a href="update.jsp">Update Details</a>
+                            <a href="/Update">Update Details</a>
                         <%}
                         %>
                         

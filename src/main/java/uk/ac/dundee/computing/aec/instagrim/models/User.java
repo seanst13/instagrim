@@ -151,8 +151,30 @@ public class User {
             return false;
             }
         }
-                        
+       
+    public java.util.UUID getProfilePicUUID (String username){
+    
+    java.util.UUID picid;
+    Session session = cluster.connect("instagrim");
+    PreparedStatement ps = session.prepare("select picid from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+
+            for (Row row : rs) {
+               
+                picid = row.getUUID("picid");
+                      
+            }
+        
+            return picid;
+       
     }
+
+
+} //End of Class
         
         
 
