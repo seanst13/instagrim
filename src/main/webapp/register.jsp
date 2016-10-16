@@ -49,6 +49,8 @@
             <div class ="contentbox">
             <h3>Register as user</h3>
             
+            ${error}
+            
             <form method="POST"  action="Register">
                 <ul>
                     <h4>Personal Details</h4>

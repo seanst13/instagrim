@@ -16,8 +16,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
 /**
  *
@@ -51,20 +53,33 @@ public class Register extends HttpServlet {
         String last_name = request.getParameter("surname");
         String email = request.getParameter("email");
         
-        
+        HttpSession session=request.getSession();
+        session.setAttribute("", null ); 
         username.toLowerCase();
         
-        if (username.length() <=16){
-            
-            
-            
-            }
+//        if (username.length() <=16){
+//            
+//            
+//            
+//            }
         
         User us=new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password, first_name, last_name, email);
+        if (us.IsUsernameTaken(username) == true){
         
-	response.sendRedirect("/Instagrim");
+             us.RegisterUser(username, password, first_name, last_name, email);
+            response.sendRedirect("/Instagrim");
+            
+        } else {
+        
+            String error = null;
+            session.setAttribute("Username is Taken", error ); 
+            response.sendRedirect("register.jsp");
+
+        
+        }
+        
+	
         
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
