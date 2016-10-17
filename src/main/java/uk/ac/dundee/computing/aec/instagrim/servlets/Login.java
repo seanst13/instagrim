@@ -73,6 +73,7 @@ public class Login extends HttpServlet {
             profileInfo.setFirst_name(us.getUserInformation(username)[0]);
             profileInfo.setLast_name(us.getUserInformation(username)[1]);
             profileInfo.setEmail(us.getUserInformation(username)[2]);
+            profileInfo.setProfilePic(us.getProfilePicUUID(username));
             
             
             session.setAttribute("ProfileInfo", profileInfo);

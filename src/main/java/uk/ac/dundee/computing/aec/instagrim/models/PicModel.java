@@ -87,9 +87,9 @@ public class PicModel {
             
             }else if(check == "true"){
                 
-                User us = new User();
+              
                 
-                us.updateProfilePic(user, picid);
+                
                 
                  PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
                  PreparedStatement ps = session.prepare("UPDATE userprofiles SET picid WHERE login =?");

@@ -154,7 +154,7 @@ public class User {
        
     public java.util.UUID getProfilePicUUID (String username){
     
-    java.util.UUID picid;
+    java.util.UUID picid = null;
     Session session = cluster.connect("instagrim");
     PreparedStatement ps = session.prepare("select picid from userprofiles where login =?");
         ResultSet rs = null;
