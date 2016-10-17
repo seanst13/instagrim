@@ -98,17 +98,25 @@ public class Update extends HttpServlet {
         String email = request.getParameter("email");
         
         username.toLowerCase();
-                 
+        
+        java.util.UUID picid = us.getProfilePicUUID(username);
+        
+        
+        
+        
         us.updateUser(username, first_name, last_name, email);
         
         ProfileInfo pi = new ProfileInfo();
         pi.update(first_name, last_name, email); //This method just does all the set methods
+        pi.setProfilePic(picid);
         
         request.setAttribute("ProfileInfo", pi);
         session.setAttribute("ProfileInfo", pi);
         
         
 	RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
+        rd.forward(request, response);
+        
     }
 
     /**

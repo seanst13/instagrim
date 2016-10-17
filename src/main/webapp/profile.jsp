@@ -58,7 +58,7 @@
                         
  
                             <br>
-                            <a href="profupload.jsp">Change Profile Picture</a>
+                   
                         <%}
                         %>
                         
