@@ -47,7 +47,7 @@
         </div>
             <div id ="content" class = "contentproperties">
                 <div class ="contentbox">
-                    <h3>Your Profile <a href="/Update" style = "float: right">Update Details</a></h3> 
+                    <h3>Your Profile <a href="/Instagrim/Update" style = "float: right">Update Details</a></h3> 
                     <ul>
                         <% 
                         if (lg!=null){%>

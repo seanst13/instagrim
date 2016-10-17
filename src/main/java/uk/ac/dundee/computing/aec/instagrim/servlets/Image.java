@@ -125,6 +125,8 @@ public class Image extends HttpServlet {
         out.close();
     }
 
+    
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
@@ -132,7 +134,16 @@ public class Image extends HttpServlet {
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             
-            String check = request.getParameter("check");
+            String check;
+            check = request.getParameter("check");
+            
+            boolean profile = true;
+            
+            if (check =="true"){
+                profile = true;
+            } else if(check=="false") {
+                profile=false;
+            }
             
             
             InputStream is = request.getPart(part.getName()).getInputStream();
@@ -149,18 +160,11 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username, check);
+                tm.insertPic(b, type, filename, username, profile);
 
                 is.close();
             }
-            
-            if(check =="true"){
-            
-            
-            }
-            
-            
-            
+                
             
             
             RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
