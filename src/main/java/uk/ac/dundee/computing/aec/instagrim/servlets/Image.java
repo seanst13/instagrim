@@ -129,22 +129,27 @@ public class Image extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String check = request.getParameter("check");
+            boolean profile =false;
+        
+            if(check.equals("true")){
+                profile=true;
+            }
+            
+            System.out.println("Value of Check:" + check);
+            System.out.println("Value of Profile:" + profile);
+        
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
             
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             
-            String check;
-            check = request.getParameter("check");
+
             
-            boolean profile = true;
-            
-            if (check =="true"){
-                profile = true;
-            } else if(check=="false") {
-                profile=false;
-            }
+//            if (check =="true"){
+//                profile = true;
+//            } 
             
             
             InputStream is = request.getPart(part.getName()).getInputStream();

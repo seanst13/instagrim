@@ -49,12 +49,12 @@
             <div class="contentbox">
             <h3>File Upload</h3>
             <ul>
-            <form method="POST" enctype="multipart/form-data" action="Image">
+                <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
-                <input type ="text" name="check" value="false" readonly style="display:none">
+                <input type="hidden" name ="check" value="false">
                 <br/>
                 <input type="submit" value="Click to Upload File">
-            </form>
+            </form> 
             </ul>
             </div>
         </article>

@@ -38,7 +38,7 @@
             <ul>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
-                <input type ="text" name="check" value="true" readonly style="display:none">
+                <input type="hidden" name ="check" value="true">
                 <br/>
                 <input type="submit" value="Click to Upload File">
             </form> 
@@ -59,6 +59,7 @@
                     <input type ="text" name="email">
                     
                 <br/>
+                
                 <input type="submit" value="Update Details">
                 </ul>
             </form>
