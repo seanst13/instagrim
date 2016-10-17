@@ -25,8 +25,9 @@ import org.apache.commons.fileupload.util.Streams;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
 import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
+import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
-import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
 /**
  * Servlet implementation class Image
@@ -150,7 +151,12 @@ public class Image extends HttpServlet {
             int i = is.available();
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+            ProfileInfo pi= (ProfileInfo)session.getAttribute("ProfileInfo");
+            
+            
             String username="majed";
+            
+            
             if (lg.getlogedin()){
                 username=lg.getUsername();
             }
@@ -164,10 +170,20 @@ public class Image extends HttpServlet {
 
                 is.close();
             }
+             
+            if(profile == true){
+                User us = new User();
+                us.setCluster(cluster);
+                java.util.UUID picid = us.getProfilePicUUID(username);
+                pi.setProfilePic(picid);
                 
+                request.setAttribute("ProfileInfo", pi);
+                session.setAttribute("ProfileInfo", pi);
+            }
             
             
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+            
+            RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
              rd.forward(request, response);
         }
 

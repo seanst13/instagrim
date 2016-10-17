@@ -52,6 +52,9 @@ public class PicModel {
 
     public void insertPic(byte[] b, String type, String name, String user, boolean check) {
         try {
+            
+            
+            
             Convertors convertor = new Convertors();
 
             String types[]=Convertors.SplitFiletype(type);

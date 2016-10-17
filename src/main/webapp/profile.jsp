@@ -51,11 +51,12 @@
                     <ul>
                         <% 
                         if (lg!=null){%>
+                        <span style="float: right"> <a href="/Instagrim/Image/<%=pi.getProfilePic()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=pi.getProfilePic()%>"></a></span>
                         <p><b>Username:</b> <%=lg.getUsername()%></p>
                         <p><b>Name:</b> <%=pi.getFirst_name()%> <%=pi.getLast_name()%></p>
                         <p><b>Email Address:</b> <%=pi.getEmail()%></p>
                         
-                        <span style="float: right"> <a href="/Instagrim/Image/<%=pi.getProfilePic()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=pi.getProfilePic()%>"></a></span>
+ 
                             <br>
                             <a href="profupload.jsp">Change Profile Picture</a>
                         <%}

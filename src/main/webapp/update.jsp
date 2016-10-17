@@ -32,10 +32,21 @@
         </div>
        
         <div id ="content" class ="contentproperties">
-            <div class ="contentbox">
-            <h3>Update Your Account Details</h3>
             
-            <form method="POST"  action="UpdateDetails">
+            <div class ="contentbox">        
+            <h3>Edit Your Profile Picture</h3>
+            <ul>
+            <form method="POST" enctype="multipart/form-data" action="Image">
+                File to upload: <input type="file" name="upfile"><br/>
+                <input type ="text" name="check" value="true" readonly style="display:none">
+                <br/>
+                <input type="submit" value="Click to Upload File">
+            </form> 
+            </div><br><br><br>  
+                
+            <div class ="contentbox">      
+            <h3>Update Your Account Details</h3>    
+                <form method="POST"  action="Update">
                 <ul>
                     <p>Username</p>
                     <input type ="text" name="username" value="<%=lg.getUsername()%>" readonly>
@@ -51,7 +62,9 @@
                 <input type="submit" value="Update Details">
                 </ul>
             </form>
-            </div>
+            </div>        
+                    
+            
 
         </div>
         <footer>
