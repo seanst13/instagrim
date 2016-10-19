@@ -66,13 +66,25 @@ public class Register extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
+        
+        if(username.isEmpty()){
+            request.setAttribute("error", "ERROR: Username must contain a value!"); 
+            session.setAttribute("error", "ERROR: Username must contain a value!");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        } 
+        if(password.isEmpty()){
+            request.setAttribute("error", "ERROR: Passwords must contain a value!"); 
+            session.setAttribute("error", "ERROR: Passwords must contain a value!");
+            request.getRequestDispatcher("register.jsp").forward(request, response);   
+        }
+        
+        
+        
         if (us.IsUsernameTaken(username) == true){            
             if(us.passwordCheck(password, password1) == true){
                 us.RegisterUser(username, password, first_name, last_name, email);
                 response.sendRedirect("/Instagrim");
-            } else { 
-
-                
+            } else {  
                 request.setAttribute("error", "ERROR: Passwords don't Match!"); 
                 session.setAttribute("error", "ERROR: Passwords don't Match!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
