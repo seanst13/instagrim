@@ -48,11 +48,11 @@
         <div id ="content" class ="contentproperties">
             <div class ="contentbox">
             <h3>Register as user</h3>
-            
-            ${error}
-            
+                                            
             <form method="POST"  action="Register">
                 <ul>
+
+                    
                     <h4>Personal Details</h4>
                     <p>Forename</p>
                     <input type ="text" name="forename">
@@ -65,6 +65,8 @@
                     <input type="text" name="username">
                     <p>Password</p>
                     <input type="password" name="password">
+                    <p>Re-enter your Password</p>
+                    <input type="password" name="password1">
                 <br/>
                 <input type="submit" value="Register">
                 </ul>

@@ -49,12 +49,13 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String password1 = request.getParameter("password1");
         String first_name = request.getParameter("forename");
         String last_name = request.getParameter("surname");
         String email = request.getParameter("email");
         
         HttpSession session=request.getSession();
-        session.setAttribute("", null ); 
+        session.setAttribute("Error", null ); 
         username.toLowerCase();
         
 //        if (username.length() <=16){
@@ -65,16 +66,25 @@ public class Register extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
-        if (us.IsUsernameTaken(username) == true){
-        
-             us.RegisterUser(username, password, first_name, last_name, email);
-            response.sendRedirect("/Instagrim");
+        if (us.IsUsernameTaken(username) == true){            
+            if(us.passwordCheck(password, password1) == true){
+                us.RegisterUser(username, password, first_name, last_name, email);
+                response.sendRedirect("/Instagrim");
+            } else { 
+
+                String error = null;
+                request.setAttribute("Error", "username"); 
+                session.setAttribute("Error", "username");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            
+            }
             
         } else {
         
             String error = null;
-            session.setAttribute("Username is Taken", error ); 
-            response.sendRedirect("register.jsp");
+            request.setAttribute("Error", "username"); 
+            session.setAttribute("Error", "username");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
 
         
         }

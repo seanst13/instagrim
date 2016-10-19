@@ -172,6 +172,18 @@ public class User {
             return picid;
        
     }
+    
+    public boolean passwordCheck(String firstpassword, String secondPassword){
+    
+        if(firstpassword.contentEquals(secondPassword))
+        {
+            return true;
+        } 
+        else 
+        {
+            return false;
+        }
+    }
 
 
 } //End of Class
