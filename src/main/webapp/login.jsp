@@ -51,6 +51,7 @@
             <h3>Login</h3>
             <form method="POST"  action="Login">
                 <ul>
+                    <h2 style="font-size: large; color: red; text-align: center;">${LoginError}</h2>
                         <p>User Name</p> 
                         <input type="text" name="username">
                         <p>Password</p> 

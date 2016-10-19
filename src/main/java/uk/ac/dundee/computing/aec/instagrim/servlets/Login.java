@@ -48,6 +48,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         
@@ -56,8 +57,23 @@ public class Login extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
-        boolean isValid=us.IsValidUser(username, password);
+        
         HttpSession session=request.getSession();
+        session.setAttribute("LoginError", "");
+        
+        if(username.isEmpty()){
+            request.setAttribute("LoginError", "ERROR: Username must contain a value!"); 
+            session.setAttribute("LoginError", "ERROR: Username must contain a value!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } 
+        if(password.isEmpty()){
+            request.setAttribute("LoginError", "ERROR: Passwords must contain a value!"); 
+            session.setAttribute("LoginError", "ERROR: Passwords must contain a value!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);   
+        }
+        
+        boolean isValid=us.IsValidUser(username, password);
+        
         System.out.println("Session in servlet "+session);
         
         if (isValid){
@@ -85,7 +101,9 @@ public class Login extends HttpServlet {
 	    rd.forward(request,response);
             
         }else{
-            response.sendRedirect("/Instagrim/login.jsp");
+            
+            RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+	    rd.forward(request,response);
         }
         
     }
