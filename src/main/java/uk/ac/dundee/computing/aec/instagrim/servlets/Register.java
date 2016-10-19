@@ -55,7 +55,7 @@ public class Register extends HttpServlet {
         String email = request.getParameter("email");
         
         HttpSession session=request.getSession();
-        session.setAttribute("Error", null ); 
+        session.setAttribute("error", "" ); 
         username.toLowerCase();
         
 //        if (username.length() <=16){
@@ -72,18 +72,18 @@ public class Register extends HttpServlet {
                 response.sendRedirect("/Instagrim");
             } else { 
 
-                String error = null;
-                request.setAttribute("Error", "username"); 
-                session.setAttribute("Error", "username");
+                
+                request.setAttribute("error", "ERROR: Passwords don't Match!"); 
+                session.setAttribute("error", "ERROR: Passwords don't Match!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             
             }
             
         } else {
         
-            String error = null;
-            request.setAttribute("Error", "username"); 
-            session.setAttribute("Error", "username");
+           
+            request.setAttribute("error", "ERROR: Username is already in use!"); 
+            session.setAttribute("error", "ERROR: Username is already in use!");
             request.getRequestDispatcher("register.jsp").forward(request, response);
 
         
@@ -93,6 +93,8 @@ public class Register extends HttpServlet {
         
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        session.setAttribute("error", "" ); 
         RequestDispatcher rd=request.getRequestDispatcher("register.jsp");
 	rd.forward(request,response);
     }
