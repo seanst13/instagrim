@@ -90,7 +90,7 @@ public class Update extends HttpServlet {
         us.setCluster(cluster);
        
         HttpSession session=request.getSession();
-      
+        ProfileInfo pi =(ProfileInfo)session.getAttribute("ProfileInfo");
         
         String username=request.getParameter("username");
         String first_name = request.getParameter("forename");
@@ -99,14 +99,31 @@ public class Update extends HttpServlet {
         
         username.toLowerCase();
         
+        
+        
+        System.out.println(pi.getFirst_name());
+        System.out.println(pi.getLast_name());
+        System.out.println(pi.getEmail());
+        
+        
+        
+        
         java.util.UUID picid = us.getProfilePicUUID(username);
         
-        
-        
+        if(first_name.isEmpty()){
+            first_name=pi.getFirst_name();
+        }
+        if(last_name.isEmpty()){
+            last_name=pi.getLast_name();
+        }
+        if(email.isEmpty()){
+            email=pi.getEmail();
+        }
+            
         
         us.updateUser(username, first_name, last_name, email);
         
-        ProfileInfo pi = new ProfileInfo();
+        
         pi.update(first_name, last_name, email); //This method just does all the set methods
         pi.setProfilePic(picid);
         

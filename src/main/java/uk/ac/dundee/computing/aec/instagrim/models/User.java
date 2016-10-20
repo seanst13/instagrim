@@ -120,16 +120,16 @@ public class User {
         
         Session session = cluster.connect("instagrim");
         PreparedStatement ps = session.prepare("UPDATE userprofiles SET first_name =?, last_name = ?, email = ? WHERE login =?");
-        ResultSet rs = null;
+        
         BoundStatement boundStatement = new BoundStatement(ps);
-        rs = session.execute( // this is where the query is executed
+        session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         first_name, last_name, email, username));
-        
-        if (rs.isExhausted()){
-            System.out.println("No user information retieved from the database");
-            
-        } 
+//        
+//        if (rs.isExhausted()){
+//            System.out.println("No user information retieved from the database");
+//            
+//        } 
             
         }
     
