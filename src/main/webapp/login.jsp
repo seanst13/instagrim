@@ -49,7 +49,7 @@
         <article id="content" class ="contentproperties">
             <div class = "contentbox">
             <h3>Login</h3>
-            <form method="POST"  action="Login">
+            <form method="POST"  action="/Instagrim/Login">
                 <ul>
                     <h2 style="font-size: large; color: red; text-align: center;">${LoginError}</h2>
                         <p>User Name</p> 
