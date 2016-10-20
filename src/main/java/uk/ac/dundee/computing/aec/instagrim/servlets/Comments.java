@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author seans
  */
-@WebServlet(name = "Comments", urlPatterns = {"/Comments"})
+@WebServlet(name = "Comments", urlPatterns = {"/Comments/*"})
 public class Comments extends HttpServlet {
 
     /**
