@@ -24,7 +24,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.*;
  *
  * @author seans
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile"})
+@WebServlet(name = "Profile", urlPatterns = {"/Profile" , "/Profile/*"})
 public class Profile extends HttpServlet {
 
     /**
@@ -64,7 +64,7 @@ public class Profile extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd=request.getRequestDispatcher("profile.jsp");
+        RequestDispatcher rd=request.getRequestDispatcher("/profile.jsp");
 	rd.forward(request,response);
     }
 

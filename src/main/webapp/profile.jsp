@@ -3,7 +3,7 @@
     Created on : 29-Sep-2016, 15:50:22
     Author     : seans
 --%>
-
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-                <li><a href="/Instagrim/Profile" class="active" >Profile</a></li>
+                <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>" class="active" >Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
                     <%}
