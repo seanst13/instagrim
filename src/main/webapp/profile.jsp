@@ -33,7 +33,7 @@
                     %>
                 <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>" class="active" >Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
+                <li style ="float: right"><a href="/Instagrim/LogOut" method="GET">Log Out</a></li>
                     <%}
                             }else{
                                 %>
@@ -59,11 +59,9 @@
  
                             <br>
                    
-                        <%}
+                        <%} else if(lg == null){
                         %>
-                        
-                        
-                        <p>This is some test text</p>                    
+                        <p>You cannot view the profile of a user without being logged in.</p> <% } %>                   
                     </ul>
                 </div>
                 
