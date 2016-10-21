@@ -47,26 +47,55 @@
         </div>    
         <article id="content" class ="contentproperties">
             <div class ="contentbox">
-            <h3>Your Pics</h3>
+            <h3>Image</h3>
             <ul>   
+                
+              THE IMAGE WILL DISPLAY HERE WHEN IT WORKS .... Hopefully
+              <img src ="/Instagrim/Thumb/${ImageID}">
+                
+                
+                
+                
+                
+                
         <%
-            java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-            if (lsPics == null) {
+            java.util.LinkedList<UserComments> lsComments = (java.util.LinkedList<UserComments>) request.getAttribute("Comments");
+            if (lsComments.isEmpty()) {
         %>
-        <p>No Pictures found</p>
+        <p>No Comments found</p>
         <%
         } else {
-            Iterator<Pic> iterator;
-            iterator = lsPics.iterator();
+            Iterator<UserComments> iterator;
+            iterator = lsComments.iterator();
             while (iterator.hasNext()) {
-                Pic p = (Pic) iterator.next();
+                UserComments c = (UserComments) iterator.next();
 
         %>
-        <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
+        <h4><% c.getUser(); %> Says: </h4>
+        <p><%c.getComment();%></p>
+        <hr> 
+        <br>
+     
+        <%
 
             }
             }
         %>
+        
+        <form method="POST"  action="/Instagrim/Comments">
+            <h3>Post a Comment:</h3>
+            <input type ="text" name="comment">
+            <input type="hidden" name="PicID" value ="${ImageID}">
+            <br>
+            <input type="submit" name="Post Comment"> 
+        </form>
+        
+        
+        
+        
+        
+        
+        
             </ul>
             </div>
         </article>

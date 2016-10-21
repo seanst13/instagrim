@@ -5,20 +5,42 @@
  */
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
+import com.datastax.driver.core.Cluster;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
+import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
+import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
+import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
+import uk.ac.dundee.computing.aec.instagrim.models.User;
+import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
 /**
  *
  * @author seans
  */
-@WebServlet(name = "Comments", urlPatterns = {"/Comments/*"})
+@WebServlet(name = "Comments", urlPatterns = {"/Comments/*", "/Comments"})
 public class Comments extends HttpServlet {
+    private Cluster cluster;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,7 +80,24 @@ public class Comments extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String args[] = Convertors.SplitRequestPath(request);
+        
+        String UUID = args[2];
+        System.out.println("THIS IS THE VALUE OF UUID:" + UUID);
+        request.setAttribute("ImageID", UUID);
+        
+        java.util.UUID picid = null;
+        picid = picid.fromString(UUID);
+        System.out.println("THIS IS THE VALUE OF picid:" + picid);
+        
+        DisplayCommentsList(picid, request, response);
+        
+        
+        RequestDispatcher rd=request.getRequestDispatcher("/comments.jsp");
+	rd.forward(request,response);
+                  
+        
     }
 
     /**
@@ -72,9 +111,50 @@ public class Comments extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session=request.getSession();
+        String comment = request.getParameter("Comments");
+        String username = request.getParameter("username");
+       //)request.getAttribute("PicID");
+       
+//       java.util.UUID picid = null;
+//       
+//       picid = picid.fromString(imageid);
+        
+       
+//       PicModel tm = new PicModel();
+//       
+//       LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+//       
+//       if (lg.getlogedin()){
+//                username=lg.getUsername();
+//            }
+//       
+//       tm.setCluster(cluster);
+//       tm.insertComments(username, comment, picid);
+//        
+//        
+//             RequestDispatcher rd=request.getRequestDispatcher("/comments.jsp");
+//	rd.forward(request,response);
+//                  
     }
 
+    
+        private void DisplayCommentsList (java.util.UUID picid, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+        System.out.println("PICID IN DISPLAYCOMMENTSLIST:" + picid);
+        
+        java.util.LinkedList<UserComments> lsComments = tm.getComments(picid);
+        request.setAttribute("Comments", lsComments);
+        request.setAttribute("ImageID", picid);
+        RequestDispatcher rd = request.getRequestDispatcher("/comments.jsp");       
+        rd.forward(request, response);
+
+    }
+    
+        
+    
+    
     /**
      * Returns a short description of the servlet.
      *

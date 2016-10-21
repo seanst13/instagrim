@@ -50,12 +50,12 @@ public final class Keyspaces {
                     + "      picid uuid\n"
                     + "  );";
             
-            String CreateComments = "CREATE TABLE if not exists instagrim.comments (\n"
+            String CreateComments = "CREATE TABLE if not exists instagrim.usercomments (\n"
                     + "     login text, \n"
                     + "     picid uuid, \n"
                     + "     time_added  timestamp, \n"
                     +"      comments    text,    \n"
-                    +"      PRIMARY KEY (login, time_added) \n"
+                    +"      PRIMARY KEY (picid, time_added) \n"
                     +") WITH CLUSTERING ORDER BY (time_added asc)";
             
             

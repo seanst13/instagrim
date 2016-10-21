@@ -57,7 +57,8 @@
                         <p><b>Email Address:</b> <%=pi.getEmail()%></p>
                         
  
-                            <br>
+                            <br><br><br>
+ 
                    
                         <%} else if(lg == null){
                         %>
