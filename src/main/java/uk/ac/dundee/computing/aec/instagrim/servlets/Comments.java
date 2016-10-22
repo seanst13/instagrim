@@ -134,10 +134,13 @@ public class Comments extends HttpServlet {
                 username=lg.getUsername();
             }
        
+       request.setAttribute("ImageID", imageid);
+       session.setAttribute("ImageID", imageid);
        
        
        tm.setCluster(cluster);
        tm.insertComments(username, comment, picid);
+       DisplayCommentsList(picid, request, response);
         
         
         RequestDispatcher rd=request.getRequestDispatcher("comments.jsp");
