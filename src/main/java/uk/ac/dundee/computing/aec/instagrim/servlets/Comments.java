@@ -112,29 +112,36 @@ public class Comments extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session=request.getSession();
+        
+        
         String comment = request.getParameter("Comments");
         String username = request.getParameter("username");
-       //)request.getAttribute("PicID");
+       String imageid = request.getParameter("PicID");
        
-//       java.util.UUID picid = null;
-//       
-//       picid = picid.fromString(imageid);
+       System.out.println("Value of Comment: " + comment);
+       
+       java.util.UUID picid = null;
+       
+       picid = picid.fromString(imageid);
+       System.out.println("VALUE OF PICID: " + picid);
         
        
-//       PicModel tm = new PicModel();
-//       
-//       LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
-//       
-//       if (lg.getlogedin()){
-//                username=lg.getUsername();
-//            }
-//       
-//       tm.setCluster(cluster);
-//       tm.insertComments(username, comment, picid);
-//        
-//        
-//             RequestDispatcher rd=request.getRequestDispatcher("/comments.jsp");
-//	rd.forward(request,response);
+       PicModel tm = new PicModel();
+       
+       LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+       
+       if (lg.getlogedin()){
+                username=lg.getUsername();
+            }
+       
+       
+       
+       tm.setCluster(cluster);
+       tm.insertComments(username, comment, picid);
+        
+        
+        RequestDispatcher rd=request.getRequestDispatcher("comments.jsp");
+	rd.forward(request,response);
 //                  
     }
 

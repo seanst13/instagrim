@@ -60,7 +60,7 @@
                 
         <%
             java.util.LinkedList<UserComments> lsComments = (java.util.LinkedList<UserComments>) request.getAttribute("Comments");
-            if (lsComments.isEmpty()) {
+            if (lsComments==null) {
         %>
         <p>No Comments found</p>
         <%
@@ -71,8 +71,8 @@
                 UserComments c = (UserComments) iterator.next();
 
         %>
-        <h4><% c.getUser(); %> Says: </h4>
-        <p><%c.getComment();%></p>
+        <h4><%=c.getUser() %> Says: </h4>
+        <p><%=c.getComment()%></p>
         <hr> 
         <br>
      
@@ -84,8 +84,8 @@
         
         <form method="POST"  action="/Instagrim/Comments">
             <h3>Post a Comment:</h3>
-            <input type ="text" name="comment">
-            <input type="hidden" name="PicID" value ="${ImageID}">
+            <input type ="text" name="Comments">
+            <input type="hidden" name="PicID" value =${ImageID}>
             <br>
             <input type="submit" name="Post Comment"> 
         </form>

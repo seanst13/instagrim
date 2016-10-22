@@ -144,12 +144,7 @@ public class Image extends HttpServlet {
             
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
-            
 
-            
-//            if (check =="true"){
-//                profile = true;
-//            } 
             
             
             InputStream is = request.getPart(part.getName()).getInputStream();

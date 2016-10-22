@@ -239,9 +239,11 @@ public class PicModel {
     }
     
     public void insertComments (String username, String comment, java.util.UUID picid){
-            Session session = cluster.connect("instagrim");
+        cluster = CassandraHosts.getCluster();   
+        Session session = cluster.connect("instagrim");
 
-        PreparedStatement psInsertComment = session.prepare("insert into usercomments ( login, picid, time_added, comment) values(?,?,?,?)");
+        System.out.println("PICID IN insertComments before submitting:" + comment);
+        PreparedStatement psInsertComment = session.prepare("insert into usercomments ( login, picid, time_added, comments) values(?,?,?,?) ");
         BoundStatement  bsInsertComment = new BoundStatement(psInsertComment); 
 
         Date DateAdded = new Date();
@@ -256,7 +258,7 @@ public class PicModel {
         java.util.LinkedList<UserComments> Comments = new java.util.LinkedList<>();
         cluster = CassandraHosts.getCluster();
         Session session = cluster.connect("instagrim");
-        PreparedStatement psGetComment = session.prepare("select login, comments FROM usercomments where picid = ? ALLOW FILTERING");
+        PreparedStatement psGetComment = session.prepare("select login, comments FROM usercomments where picid = ? ALLOW FILTERING ");
         BoundStatement bsGetComment = new BoundStatement(psGetComment); 
         
         ResultSet rs = null;
@@ -264,11 +266,12 @@ public class PicModel {
         rs = session.execute(bsGetComment.bind(picid));
         if (rs.isExhausted()) {
             System.out.println("No comments returned");
-            //return null;
+            return null;
         } else {
             for (Row row : rs) {
                 UserComments comment = new UserComments();
                 String acomment = row.getString("comments");
+                System.out.println("comments IN GETCOMMENTS:" + acomment);
                 String user = row.getString("login");
                 comment.setComment(acomment);
                 comment.setUser(user);
