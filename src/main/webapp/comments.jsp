@@ -49,20 +49,28 @@
             <div class ="contentbox">
             <h3>Image</h3>
             <ul>   
-                
-              THE IMAGE WILL DISPLAY HERE WHEN IT WORKS .... Hopefully
               <img src ="/Instagrim/Thumb/${ImageID}">
+            </ul>
+            </div>
+            <br><br>
+            
+            
+            <div class="contentbox">
+            <form method="POST"  action="/Instagrim/Comments">
                 
-                
-                
-                
-                
-                
+                <h3>Post a Comment:</h3><ul>
+            <input type ="text" name="Comments">
+            <input type="hidden" name="PicID" value =${ImageID}>
+            <br>
+            <input type="submit" name="Post Comment"> </ul>
+            </form></div><br><br>
         <%
             java.util.LinkedList<UserComments> lsComments = (java.util.LinkedList<UserComments>) request.getAttribute("Comments");
             if (lsComments==null) {
         %>
-        <p>No Comments found</p>
+        <div class ="contentbox">
+            <h3><p>No Comments found</p></h3>
+            </div>
         <%
         } else {
             Iterator<UserComments> iterator;
@@ -71,10 +79,13 @@
                 UserComments c = (UserComments) iterator.next();
 
         %>
-        <h4><%=c.getUser() %> Says: </h4>
-        <p><%=c.getComment()%></p>
-        <hr> 
-        <br>
+        <div class ="contentbox">
+            <h3><%=c.getUser() %> </h3>
+            <ul>
+                <p><%=c.getComment()%></p>
+            </ul>
+        </div>
+            <br><br>
      
         <%
 
@@ -82,22 +93,8 @@
             }
         %>
         
-        <form method="POST"  action="/Instagrim/Comments">
-            <h3>Post a Comment:</h3>
-            <input type ="text" name="Comments">
-            <input type="hidden" name="PicID" value =${ImageID}>
-            <br>
-            <input type="submit" name="Post Comment"> 
-        </form>
-        
-        
-        
-        
-        
-        
-        
-            </ul>
-            </div>
+
+
         </article>
         <footer>
             <ul>

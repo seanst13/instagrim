@@ -132,6 +132,7 @@ public class Image extends HttpServlet {
             String check = request.getParameter("check");
             boolean profile =false;
         
+            String filterype = request.getParameter("filter");
             if(check.equals("true")){
                 profile=true;
             }
@@ -166,7 +167,7 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username, profile);
+                tm.insertPic(b, type, filename, username, profile, filterype);
 
                 is.close();
             }

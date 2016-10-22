@@ -51,6 +51,12 @@
             <ul>
                 <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
+                Filter for Image:
+                  <input type="radio" name="filter" value="gray"> Grayscale Filter
+                  <input type="radio" name="filter" value="dark"> Dark Filter
+                  <input type="radio" name="filter" value="light"> Bright Filter
+                  <input type="radio" name="filter" value="none"> No Filter<br>
+                  
                 <input type="hidden" name ="check" value="false">
                 <br/>
                 <input type="submit" value="Click to Upload File">
