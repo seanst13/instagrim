@@ -20,14 +20,17 @@
         </div>
         <div>
             <ul id="navbar">
-                <li><a href="index.jsp">Home</a></li>
-                <li><a href="profile.jsp">Profile</a></li>
+                <li><a href="/Instagrim">Home</a></li>
+                
                 <% 
                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                    ProfileInfo pi = (ProfileInfo) session.getAttribute("ProfileInfo"); 
                 
-                %>
+                            if (lg.getlogedin()) {
+                    %>
+                <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>" >Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
             </ul>
         </div>
        

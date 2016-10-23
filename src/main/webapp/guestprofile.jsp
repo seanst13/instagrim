@@ -26,7 +26,7 @@
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        ProfileInfo pi = (ProfileInfo) session.getAttribute("ProfileInfo");
+                        GuestProfileInfo gi = (GuestProfileInfo)session.getAttribute("GuestInfo");
                         if (lg != null) {
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
@@ -47,14 +47,14 @@
         </div>
             <div id ="content" class = "contentproperties">
                 <div class ="contentbox">
-                    <h3>Your Profile <a href="/Instagrim/Update" style = "float: right">Update Details</a></h3> 
+                    <h3> Profile</h3> 
                     <ul>
                         <% 
                         if (lg!=null){%>
-                        <span style="float: right"> <a href="/Instagrim/Comments/<%=pi.getProfilePic()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=pi.getProfilePic()%>"></a></span>
-                        <p><b>Username:</b> <%=lg.getUsername()%></p>
-                        <p><b>Name:</b> <%=pi.getFirst_name()%> <%=pi.getLast_name()%></p>
-                        <p><b>Email Address:</b> <%=pi.getEmail()%></p>
+                        <span style="float: right"> <a href="/Instagrim/Comments/<%=gi.getProfilePic()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=gi.getProfilePic()%>"></a></span>
+                        <p><b>Username:</b> <%=gi.getUsername()%></p>
+                        <p><b>Name:</b> <%=gi.getFirst_name()%> <%=gi.getLast_name()%></p>
+                        <p><b>Email Address:</b> <%=gi.getEmail()%></p>
                         
  
                             <br><br><br>

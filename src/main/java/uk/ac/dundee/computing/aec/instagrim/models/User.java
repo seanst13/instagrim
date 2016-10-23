@@ -15,6 +15,7 @@ import com.datastax.driver.core.Session;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
+import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 
 /**
@@ -90,7 +91,7 @@ public class User {
     }
 
     public String[] getUserInformation(String username){
-        
+        cluster = CassandraHosts.getCluster(); 
         //This retrieves the user information(forename, surname and email address)
         // And returns them in a string array. 
         String[] userInfo = new String[3];

@@ -31,7 +31,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-                <li><a href="/Instagrim/Profile">Profile</a></li>
+                <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>" class ="active">Your Images</a></li>
                 <li style ="float: right"><a href="LogOut" method="GET">Log Out</a></li>
                     <%}
@@ -62,10 +62,9 @@
                 Pic p = (Pic) iterator.next();
 
         %>
-        <form method ="GET" action="/Instagrim/Comments">
-        <a href="/Instagrim/Comments/<%=p.getSUUID()%>" ><img style="display:inline" src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/>
-        <input type ="hidden" value ="<%=p.getSUUID()%>" name="picid" readonly>
-        </form>
+        
+        <a href="/Instagrim/Comments/<%=p.getSUUID()%>" ><img style="display:block" src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br>
+
         <%
 
             }

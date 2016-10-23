@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
+import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
@@ -64,8 +65,42 @@ public class Profile extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        String args[] = Convertors.SplitRequestPath(request);
+        
+        
+        
+        String username = args[2];
+        System.out.println("Username:" +username);
+       
+        HttpSession session=request.getSession();
+        LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+        GuestProfileInfo gi = new GuestProfileInfo();
+        User us = new User();
+                
+        if(lg.getUsername().equals(username)){
+       
+        
         RequestDispatcher rd=request.getRequestDispatcher("/profile.jsp");
 	rd.forward(request,response);
+        
+        } else{
+            
+       
+        gi.setUsername(username);
+        gi.setFirst_name(us.getUserInformation(username)[0]);
+        gi.setLast_name(us.getUserInformation(username)[1]);
+        gi.setEmail(us.getUserInformation(username)[2]);
+        gi.setProfilePic(us.getProfilePicUUID(username));
+            
+            
+        request.setAttribute("GuestInfo", gi);
+        session.setAttribute("GuestInfo", gi);
+
+        RequestDispatcher rd=request.getRequestDispatcher("/guestprofile.jsp");
+	rd.forward(request,response); }
+    
+    
     }
 
     /**
