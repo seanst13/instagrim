@@ -91,6 +91,8 @@ public class User {
 
     public String[] getUserInformation(String username){
         
+        //This retrieves the user information(forename, surname and email address)
+        // And returns them in a string array. 
         String[] userInfo = new String[3];
         
         Session session = cluster.connect("instagrim");
@@ -135,6 +137,7 @@ public class User {
     
     public boolean IsUsernameTaken(String username){
         
+        //Returns a true if the username hasn't been taken and false if it has. 
         Session session = cluster.connect("instagrim");
         PreparedStatement ps = session.prepare("SELECT login FROM userprofiles WHERE login =?");
         ResultSet rs = null;
@@ -154,6 +157,7 @@ public class User {
        
     public java.util.UUID getProfilePicUUID (String username){
     
+     //Retrieves the profile picture UUID from the Database
     java.util.UUID picid = null;
     Session session = cluster.connect("instagrim");
     PreparedStatement ps = session.prepare("select picid from userprofiles where login =?");
@@ -175,6 +179,7 @@ public class User {
     
     public boolean passwordCheck(String firstpassword, String secondPassword){
     
+        //Method literally just compares whether the two passwords are equal to eachother and returns true if they do
         if(firstpassword.contentEquals(secondPassword))
         {
             return true;
