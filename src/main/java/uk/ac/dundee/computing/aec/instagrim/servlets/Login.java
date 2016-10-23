@@ -52,7 +52,8 @@ public class Login extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         
-        username.toLowerCase();
+        //Convert the username to lowercase
+        username = username.toLowerCase();
         
         
         User us=new User();
@@ -61,6 +62,8 @@ public class Login extends HttpServlet {
         HttpSession session=request.getSession();
         session.setAttribute("LoginError", "");
         
+        
+        //Input validation for empty fields
         if(username.isEmpty()){
             request.setAttribute("LoginError", "ERROR: Username must contain a value!"); 
             session.setAttribute("LoginError", "ERROR: Username must contain a value!");
@@ -85,6 +88,8 @@ public class Login extends HttpServlet {
             System.out.println("Session in servlet "+session);
             
             
+            //Retrieve the forename, surname, email address and profile picture uuid from the DB
+            //And apply them to the ProfileInfo store
             ProfileInfo profileInfo = new ProfileInfo();
             profileInfo.setFirst_name(us.getUserInformation(username)[0]);
             profileInfo.setLast_name(us.getUserInformation(username)[1]);
@@ -109,7 +114,7 @@ public class Login extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
-        session.setAttribute("LoginError", "");
+        session.setAttribute("LoginError", ""); //Reset the display errors for input validation.
         RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
 	rd.forward(request,response);
     }

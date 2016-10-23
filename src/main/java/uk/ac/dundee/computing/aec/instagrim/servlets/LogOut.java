@@ -60,6 +60,8 @@ public class LogOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //Call the Session, Invalidate it, then forward back to the index page. 
         HttpSession session = request.getSession();
         
         session.invalidate();

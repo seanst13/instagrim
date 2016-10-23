@@ -53,8 +53,6 @@ public class PicModel {
     public void insertPic(byte[] b, String type, String name, String user, boolean check, String filter) {
         try {
             
-            
-            
             Convertors convertor = new Convertors();
 
             String types[]=Convertors.SplitFiletype(type);
@@ -75,6 +73,10 @@ public class PicModel {
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
 
+            
+            
+            //If statement to filter between a regular image and a porifle picture
+            //Profile pictures do not get uploaded to the userpic list.
             
             if(check==false){
                 
@@ -147,6 +149,7 @@ public class PicModel {
 
     public static BufferedImage createThumbnail(BufferedImage img, String filter) {
         
+       //If statement to determine which version of the image to use based on the filter radio buttons on the jsp page 
         if(filter.equals("gray")){
             img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE );
         // Let's add a little border before we return result.
@@ -171,6 +174,7 @@ public class PicModel {
    public static BufferedImage createProcessed(BufferedImage img, String filter) {
         int Width=img.getWidth()-1;
         
+        //If statement to determine which version of the image to use based on the filter radio buttons on the jsp page 
          if(filter.equals("gray")){
             img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE );
         // Let's add a little border before we return result.
@@ -273,6 +277,8 @@ public class PicModel {
     }
     
     public void insertComments (String username, String comment, java.util.UUID picid){
+        
+        //The following code inserts the comments into the comments table in the database
         cluster = CassandraHosts.getCluster();   
         Session session = cluster.connect("instagrim");
 
@@ -287,7 +293,7 @@ public class PicModel {
     }   
     
     public java.util.LinkedList<UserComments> getComments(java.util.UUID picid){
-        
+        //The following code retrieves the comments from the DB and for each picture, puts the filters
         System.out.println("PICID IN GETCOMMENTS:" + picid);
         java.util.LinkedList<UserComments> Comments = new java.util.LinkedList<>();
         cluster = CassandraHosts.getCluster();
@@ -297,6 +303,8 @@ public class PicModel {
         
         ResultSet rs = null;
         
+        //If the result set is has no comments, set the linked list to null, 
+        // otherwise loop through all the results and store them in the comments store and apply them to the linked list
         rs = session.execute(bsGetComment.bind(picid));
         if (rs.isExhausted()) {
             System.out.println("No comments returned");

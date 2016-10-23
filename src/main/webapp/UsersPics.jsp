@@ -76,7 +76,7 @@
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li class ="footer">&COPY; Andy C & Sean Stewart</li>
             </ul>
         </footer>
     </body>

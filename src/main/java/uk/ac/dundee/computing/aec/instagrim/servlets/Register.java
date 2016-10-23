@@ -56,17 +56,12 @@ public class Register extends HttpServlet {
         
         HttpSession session=request.getSession();
         session.setAttribute("error", "" ); 
-        username.toLowerCase();
-        
-//        if (username.length() <=16){
-//            
-//            
-//            
-//            }
-        
+        username = username.toLowerCase();
+                
         User us=new User();
         us.setCluster(cluster);
         
+        //Input validation for empty fields
         if(username.isEmpty()){
             request.setAttribute("error", "ERROR: Username must contain a value!"); 
             session.setAttribute("error", "ERROR: Username must contain a value!");
@@ -79,8 +74,9 @@ public class Register extends HttpServlet {
         }
         
         
-        
-        if (us.IsUsernameTaken(username) == true){            
+        //Input validation to check if the username already exists in the DB
+        if (us.IsUsernameTaken(username) == true){   
+            //Input validation to check if the two password strings match
             if(us.passwordCheck(password, password1) == true){
                 us.RegisterUser(username, password, first_name, last_name, email);
                 response.sendRedirect("/Instagrim");
@@ -92,8 +88,7 @@ public class Register extends HttpServlet {
             }
             
         } else {
-        
-           
+
             request.setAttribute("error", "ERROR: Username is already in use!"); 
             session.setAttribute("error", "ERROR: Username is already in use!");
             request.getRequestDispatcher("register.jsp").forward(request, response);

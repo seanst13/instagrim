@@ -18,6 +18,9 @@ public class ProfileInfo {
     public void ProfileInfo(){
         
     }
+    
+    
+    //Set Methods for Forename, Surname and Email Address
     public void setFirst_name(String first_name)
     {
         this.first_name = first_name; 
@@ -38,7 +41,7 @@ public class ProfileInfo {
         
     }
     
-
+    //Get Methods for Forename, Surname and Email Address
     public String getFirst_name()
     {
         return first_name;
@@ -54,6 +57,8 @@ public class ProfileInfo {
         return email;
     }
     
+    
+    //Get and Set methods for the profile picture UUID 
     public void setProfilePic(java.util.UUID uuid){
     
         this.profilepic = uuid;

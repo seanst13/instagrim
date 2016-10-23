@@ -129,9 +129,10 @@ public class Image extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Paramers from the jsp page to determine the filter and whether the image is a profile picture or not
+        
             String check = request.getParameter("check");
             boolean profile =false;
-        
             String filterype = request.getParameter("filter");
             if(check.equals("true")){
                 profile=true;
@@ -140,6 +141,8 @@ public class Image extends HttpServlet {
             System.out.println("Value of Check:" + check);
             System.out.println("Value of Profile:" + profile);
         
+            
+        //For loop to upload the image into the DB
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
             
@@ -157,21 +160,27 @@ public class Image extends HttpServlet {
             
             String username="majed";
             
+            //Check if the user is logged in. If they are, set the username to the one in the lgged in store, otherwise upload it to the sameple images user
             
             if (lg.getlogedin()){
                 username=lg.getUsername();
             }
+            
+            //If there's still parts of the image left to upload
             if (i > 0) {
                 byte[] b = new byte[i + 1];
                 is.read(b);
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
+                //Inserting the picture into the database
                 tm.insertPic(b, type, filename, username, profile, filterype);
 
                 is.close();
             }
              
+            
+            //If the image is a profile picture, allocate the profile picture session attributes. 
             if(profile == true){
                 User us = new User();
                 us.setCluster(cluster);

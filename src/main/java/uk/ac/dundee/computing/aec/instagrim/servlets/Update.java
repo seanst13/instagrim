@@ -97,7 +97,7 @@ public class Update extends HttpServlet {
         String last_name = request.getParameter("surname");
         String email = request.getParameter("email");
         
-        username.toLowerCase();
+        username = username.toLowerCase();
         
         
         
@@ -107,9 +107,10 @@ public class Update extends HttpServlet {
         
         
         
-        
+        //Reset the picid so that it is not refreshed when updating
         java.util.UUID picid = us.getProfilePicUUID(username);
         
+        //If any of the fields for the input are empty, retain their current values.
         if(first_name.isEmpty()){
             first_name=pi.getFirst_name();
         }
@@ -120,13 +121,14 @@ public class Update extends HttpServlet {
             email=pi.getEmail();
         }
             
-        
+        //Update the DB with the details
         us.updateUser(username, first_name, last_name, email);
         
-        
+        //Update the ProfileInfo stores with the details
         pi.update(first_name, last_name, email); //This method just does all the set methods
         pi.setProfilePic(picid);
         
+        //Set the session attributes again. 
         request.setAttribute("ProfileInfo", pi);
         session.setAttribute("ProfileInfo", pi);
         

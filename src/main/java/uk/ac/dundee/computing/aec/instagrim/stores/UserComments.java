@@ -17,6 +17,8 @@ public class UserComments {
     
     public UserComments() {}
     
+    
+    //Get and Set methods for the Comments
     public void setComment(String comment){
         this.comment = comment;
     }
@@ -25,6 +27,7 @@ public class UserComments {
         return comment;
     }
     
+    //Get and Set Methods for the Username
     public void setUser(String username){
         this.user = username;
     }
